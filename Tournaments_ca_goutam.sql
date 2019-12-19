@@ -1,0 +1,45 @@
+CREATE DATABASE TOURNAMENTS_CA_GOUTAM;
+GO
+
+CREATE SCHEMA TOURNAMENTS;
+GO
+
+
+
+--CREATE TABLE
+
+
+
+CREATE TABLE TOURNAMENTS.TournamentREG (
+	Name int CONSTRAINT PKName PRIMARY KEY IDENTITY(1,1),
+	BirthDate DATETIME,
+	EmailAddress VARCHAR(80),
+	Password VARCHAR(50)
+);
+
+
+
+CREATE TABLE TOURNAMENTS.Payment (
+	ParticipantID int CONSTRAINT PKParticipantID PRIMARY KEY IDENTITY(1,1),
+	EventID VARCHAR(50),
+	AmountPaid MONEY,
+	PaymentDate DATETIME,
+	Name int,
+	FOREIGN KEY (Name)REFERENCES TOURNAMENTS.TournamentREG(Name)
+);
+
+
+CREATE TABLE TOURNAMENTS.Information(
+	TournamentName int CONSTRAINT PKTournament PRIMARY KEY IDENTITY(1,1),
+	Description VARCHAR(90),
+	Address VARCHAR(80),
+	Date DATE,
+	RegistrationCost MONEY,
+	SportType VARCHAR(50),
+	RegistrationEndDate DATETIME,
+	Name int,
+	FOREIGN KEY (Name)REFERANCES TOURNAMENTS.TournamentREG(Name)
+);
+
+GO
+
